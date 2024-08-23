@@ -1,0 +1,62 @@
+
+.buttonCreate {
+	width: 70px;
+    height: 30px;
+    --offset: 5px;
+    --border-size: 1px;
+    padding: 0;
+    
+    display: block;
+    position: relative;
+
+    border: solid 0px transparent;
+    background: transparent;
+    color: #140023;
+    outline: none;
+    cursor: pointer;
+
+    border-radius: 0;
+    box-shadow: none;
+    transition: all .8s ease;
+    
+    &:hover {
+        background-color: #140023;
+        border: none;
+        color: #f5ddca;
+        border-radius: 5px;
+    }
+    
+    &__horizontalCreate {
+        position: absolute;
+        top: var(--horizontalCreate-offset, 0);
+        right: var(--verticalCreate-offset, 0);
+        bottom: var(--horizontalCreate-offset, 0);
+        left: var(--verticalCreate-offset, 0);
+        transition: all .8s ease;
+        will-change: transform;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            border: inherit;
+        }
+    }
+    
+    &__horizontalCreate {
+        --verticalCreate-offset: calc(var(--offset) * -1);
+        border-top: var(--border-size) solid currentcolor;
+        border-bottom: var(--border-size) solid currentcolor;
+        
+        &::before {
+            top: calc(var(--verticalCreate-offset) - var(--border-size));
+            bottom: calc(var(--verticalCreate-offset) - var(--border-size));
+            left: calc(var(--verticalCreate-offset) * -1);
+            right: calc(var(--verticalCreate-offset) * -1);
+        }
+    }
+    
+    &:hover &__horizontalCreate {
+        transform: scaleX(0);
+    }
+    
+}
